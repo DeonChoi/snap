@@ -20,7 +20,7 @@ const Collection = (props) => {
     let photoids;
 
     const getPhotoIDs =  async () => {
-        await axios.get('http://localhost:3000/collection/get', { headers:  {'auth-token': localStorage.getItem('auth-token') } })
+        await axios.get('/collection/get', { headers:  {'auth-token': localStorage.getItem('auth-token') } })
         .then( res => {
             photoids = res.data;
             console.log(photoids);
@@ -46,7 +46,7 @@ const Collection = (props) => {
     };
 
     const deletePhoto =  (id) => {
-        axios.delete('http://localhost:3000/collection/' + id, { headers:  {'auth-token': localStorage.getItem('auth-token') } })
+        axios.delete('/collection/' + id, { headers:  {'auth-token': localStorage.getItem('auth-token') } })
             .then( res => {console.log(res.data); window.location.reload();})
             .catch(err => console.log(err));
         setPhotos( photos.filter( elem => elem._id !== id));

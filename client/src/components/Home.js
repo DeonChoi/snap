@@ -48,7 +48,7 @@ const Home = (props) => {
             }
         };
 
-        await axios.post('http://localhost:3000/collection/add', newPhoto, headers)
+        await axios.post('/collection/add', newPhoto, headers)
                 .then( res => console.log(res))
                 .catch( err => console.error(err));
     };

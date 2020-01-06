@@ -32,7 +32,7 @@ const Register = (props) => {
             email,
             password
         };
-        await axios.post('http://localhost:3000/user/register', userRegister)
+        await axios.post('/user/register', userRegister)
                 .then( res => {console.log(res); props.history.push('./login')})
                 .catch( err => console.error(err));
     };
