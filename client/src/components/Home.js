@@ -63,7 +63,7 @@ const Home = (props) => {
 
             {
                 homeImages.length === 0 
-                ? <div>No Results Found</div>
+                ? <div className='noResults'>No Results Found</div>
                 : homeImages.map( homeImage => (
                         <section key={homeImage.id} className='imageCard'>
                             <LazyLoad offsetBottom={10} onContentVisible={() => console.log('I have been lazyloaded!')} className='lazyload'>
