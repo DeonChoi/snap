@@ -55,7 +55,7 @@ const Home = (props) => {
 
 
     return(
-        <div>
+        <div className='homeContainer'>
             <form className='searchForm' onSubmit={getSearch}>
                 <input type='text' placeholder='Search' name='search' className='searchBar' onChange={handleSearch} value={search}/>
                 <button type='submit'><i className='fa fa-search searchButton'></i></button>
