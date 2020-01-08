@@ -4,7 +4,6 @@ import LazyLoad from 'react-lazy-load';
 import '../styles/Collection.css';
 
 const Collection = (props) => {
-    const ACCESS_KEY = '4ed9290a2a5bb9699d9a09cbbf8a998e5782e427f9d34c609d15a488ac533983';
 
     if (!localStorage.getItem('auth-token')) {
         props.history.push('../user/login');
@@ -17,27 +16,11 @@ const Collection = (props) => {
     }, []);
 
 
-    let photoids;
-
     const getPhotoIDs =  async () => {
         await axios.get('/collection/get', { headers:  {'auth-token': localStorage.getItem('auth-token') } })
         .then( res => {
-            photoids = res.data;
-            console.log(photoids);
-            let fetchUrls = [];
-            photoids.forEach( photo => {
-                fetchUrls.push(`https://api.unsplash.com/photos/${photo.photoID}?client_id=${ACCESS_KEY}`)
-            });
-        
-            Promise.all(
-                fetchUrls.map( url => 
-                    fetch(url)
-                        .then( response => response.json())
-                        .catch(err => console.log(err))
-                )
-            )
-            .then( picture => setPhotos(picture))
-            .catch(err => console.log(err));
+            console.log(res.data);
+            setPhotos(res.data);
 
         })
         .catch( err => {
@@ -55,12 +38,14 @@ const Collection = (props) => {
     return (
         <div>
             {
-                photos.map( photo => 
-                    <section key={photo.id} className='imageCard'>
+                photos.length === 0 
+                ? <div className='noResults'>No Photos Saved</div>
+                : photos.map( photo => 
+                    <section key={photo._id} className='imageCard'>
                     <LazyLoad offsetBottom={10} onContentVisible={() => console.log('I have been lazyloaded!')} className='lazyload'>
-                        <img src={photo.urls.full} onClick={ () => console.log(photo)} className='mainImage' alt={photo.alt_description}></img>
+                        <img src={photo.photoData.urls.full} onClick={ () => console.log(photo)} className='mainImage' alt={photo.photoData.alt_description}></img>
                     </LazyLoad>
-                        <button href='' onClick={ () => deletePhoto(photo.id)} className='addButton'>X</button>
+                        <button href='' onClick={ () => deletePhoto(photo.photoID)} className='addButton'>X</button>
                         <div className='separationBar'/>
                     </section>
                 )

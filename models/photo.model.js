@@ -11,6 +11,10 @@ const photoSchema = new Schema({
         type: String,
         required: true
     },
+    photoData : {
+        type: Object,
+        required: true
+    },
     date: {
         type: Date,
         default: Date.now
