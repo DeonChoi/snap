@@ -42,7 +42,7 @@ router.post('/add', verify, async (req, res) => {
 
 });
 
-router.get('/get', verify, (req, res) => {
+router.get('/get', (req, res) => {
     Photo.find({userID: req.user._id})
         .then( photos => res.json(photos))
         .catch( err => res.status(400).json('Error: ' + err));
