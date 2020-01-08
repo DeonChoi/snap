@@ -48,7 +48,7 @@ router.get('/get', verify, (req, res) => {
         .catch( err => res.status(400).json('Error: ' + err));
 })
 
-router.delete('/:id', verify, (req,res) => {
+router.delete('/:id', (req,res) => {
     Photo.findOneAndDelete({photoID: req.params.id, userID: req.user._id})
     .then( photos => res.json('Photo deleted!'))
     .catch( err => res.status(400).json('Error: ' + err));
