@@ -19,7 +19,7 @@ const Collection = (props) => {
     const getPhotoIDs =  async () => {
         await axios.get('/collection/get', { headers:  {'auth-token': localStorage.getItem('auth-token') } })
         .then( res => {
-            console.log(res.data);
+            // console.log(res.data);
             setPhotos(res.data);
 
         })

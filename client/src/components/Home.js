@@ -16,7 +16,7 @@ const Home = (props) => {
     const getHomeImages = async () => {
       const response = await fetch(`https://api.unsplash.com/search/photos/?page=1&per_page=250&query=london&client_id=${ACCESS_KEY}`);
       const data = await response.json();
-      console.log(data.results);
+    //   console.log(data.results);
       setHomeImages(data.results);
     };
 
@@ -27,7 +27,7 @@ const Home = (props) => {
         e.preventDefault();
         const response = await fetch(`https://api.unsplash.com/search/photos/?page=1&per_page=250&query=${search}&client_id=${ACCESS_KEY}`);
         const data = await response.json();
-        console.log(data.results);
+        // console.log(data.results);
         setHomeImages(data.results);
         setSearch('');
     };
@@ -40,7 +40,7 @@ const Home = (props) => {
         const newPhoto = {
             savedPhotoID: e.currentTarget.value
         };
-        console.log(e.currentTarget.value);
+        // console.log(e.currentTarget.value);
         
         const headers = {
             headers: {
