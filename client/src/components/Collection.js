@@ -13,7 +13,7 @@ const Collection = (props) => {
 
     useEffect( () => {
         getPhotoIDs();
-    }, []);
+    }, [photos]);
 
 
     const getPhotoIDs =  async () => {
@@ -30,7 +30,7 @@ const Collection = (props) => {
 
     const deletePhoto =  (id) => {
         axios.delete('/collection/' + id, { headers:  {'auth-token': localStorage.getItem('auth-token') } })
-            .then( res => {console.log(res.data); window.location.reload();})
+            .then( res => {console.log(res.data);})
             .catch(err => console.log(err));
         setPhotos( photos.filter( elem => elem._id !== id));
     };
