@@ -13,9 +13,6 @@ const Collection = (props) => {
 
     useEffect( () => {
         getPhotoIDs();
-        if (!localStorage.getItem('auth-token')) {
-            props.history.push('../user/login');
-        }
     }, []);
 
 
