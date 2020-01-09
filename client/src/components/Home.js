@@ -8,11 +8,22 @@ const Home = (props) => {
 
     const [homeImages, setHomeImages] = useState([]);
     const [search, setSearch] = useState('');
+    const [show, setShow] = useState(false);
 
     useEffect(() => {
       getHomeImages();
     }, []);
     
+    const showModal = () => {
+        setShow(true);
+        const timer = setTimeout(() => {
+            hideModal();
+        }, 700);
+    };
+    const hideModal = () => {
+        setShow(false);
+    };
+
     const getHomeImages = async () => {
       const response = await fetch(`https://api.unsplash.com/search/photos/?page=1&per_page=250&query=london&client_id=${ACCESS_KEY}`);
       const data = await response.json();
@@ -51,6 +62,8 @@ const Home = (props) => {
         await axios.post('/collection/add', newPhoto, headers)
                 .then( res => console.log(res))
                 .catch( err => console.error(err));
+        
+        showModal();
     };
 
 
@@ -60,7 +73,11 @@ const Home = (props) => {
                 <input type='text' placeholder='Search' name='search' className='searchBar' onChange={handleSearch} value={search}/>
                 <button type='submit'><i className='fa fa-search searchButton'></i></button>
             </form>
-
+            {
+                show
+                ? <div id='modal'>Photo Saved...</div>
+                : ''
+            }
             {
                 homeImages.length === 0 
                 ? <div className='noResults'>No Results Found</div>
@@ -74,6 +91,9 @@ const Home = (props) => {
                         </section>
                 ))
             }
+            
+            
+
         </div>
          
     );

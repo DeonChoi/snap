@@ -22,7 +22,7 @@
     transition-duration: 0.3s;
 }
 .addButton:hover {
-    background-color: grey;
+    background-color: rgba(0, 16, 240, 0.76);
     color: white;
 }
 .imageCard {
@@ -75,7 +75,24 @@ button {
 
 .noResults {
     text-align: center;
-    font-size: 1.5rem;
+    font-size: 2rem;
+    margin-top: 25%;
+
+}
+
+#modal {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width:100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.6);
+    color: white;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    text-transform: uppercase;
+    font-size: 2rem;
 }
 
   @media screen and (max-width: 450px) {

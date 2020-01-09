@@ -19,4 +19,10 @@
     border: 1px solid grey;
     font-size: 1.5rem;
     border-radius: 5px;
+    background-color: rgba(0, 16, 240, 0.76);
+    color: white;
+}
+.registerSubmit:hover {
+  background-color: white;
+  color: black;
 }

@@ -19,4 +19,13 @@
     border: 1px solid grey;
     font-size: 1.5rem;
     border-radius: 5px;
+    background-color: rgba(0, 16, 240, 0.76);
+    color: white;
+}
+.loginSubmit:hover {
+  background-color: white;
+  color: black;
+}
+.invalid {
+  border: 2px solid red;
 }

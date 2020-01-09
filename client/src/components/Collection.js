@@ -10,12 +10,21 @@ const Collection = (props) => {
     }
 
     const [photos, setPhotos] = useState([]);
+    const [show, setShow] = useState(false);
 
     useEffect( () => {
         getPhotoIDs();
     }, [photos]);
 
-
+    const showModal = () => {
+        setShow(true);
+        const timer = setTimeout(() => {
+            hideModal();
+        }, 700);
+    };
+    const hideModal = () => {
+        setShow(false);
+    };
     const getPhotoIDs =  async () => {
         await axios.get('/collection/get', { headers:  {'auth-token': localStorage.getItem('auth-token') } })
         .then( res => {
@@ -33,10 +42,16 @@ const Collection = (props) => {
             .then( res => {console.log(res.data);})
             .catch(err => console.log(err));
         setPhotos( photos.filter( elem => elem._id !== id));
+        showModal();
     };
 
     return (
         <div>
+            {
+                show
+                ? <div id='modal'>Photo Deleted...</div>
+                : ''
+            }
             {
                 photos.length === 0 
                 ? <div className='noResults'>No Photos Saved</div>
